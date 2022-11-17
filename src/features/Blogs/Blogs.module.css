@@ -1,0 +1,36 @@
+.blogsBlock{
+    background: #faf7f8;
+    flex-grow: 1;
+}
+
+.buttonShowMore {
+    width: 153px;
+    height: 36px;
+    border: 1px solid #1A1718;
+    border-radius: 2px;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.container {
+    padding: 0 36px 0 25px;
+}
+
+.addBlogBlock {
+    text-align: end;
+}
+
+.addBlogButton {
+    width: 118px;
+    height: 36px;
+    background: #F8346B;
+    box-shadow: 0px 4px 18px rgba(248, 52, 107, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    border: none;
+    color: #faf7f8;
+}
+
+

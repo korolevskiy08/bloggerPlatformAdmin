@@ -1,0 +1,50 @@
+.navBlock{
+    width: 252px;
+}
+
+.link{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navBlock li {
+    padding-bottom: 10px ;
+}
+
+li img {
+    padding-right: 10px;
+}
+
+.link:hover {
+    color: #F8346B;
+}
+
+.navBlock li:hover {
+    border-right: 2px solid #F8346B;
+}
+
+.activeLink {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #F8346B;
+
+}
+
+.activeList {
+    border-right: 2px solid #F8346B;
+}
