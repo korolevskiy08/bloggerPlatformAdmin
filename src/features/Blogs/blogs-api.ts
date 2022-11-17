@@ -4,6 +4,9 @@ export const blogsAPI = {
   getBlogs() {
     return instance.get('blogs');
   },
+  removeBlog(id: string) {
+    return instance.delete(`blogs/${id}`);
+  },
 };
 
 export type BlogType = {

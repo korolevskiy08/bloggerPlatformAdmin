@@ -8,7 +8,7 @@ import deleteSvg from '../../../common/icons/Delete.svg';
 import editSvg from '../../../common/icons/Edit.svg';
 import settingsSvg from '../../../common/icons/Settings.svg';
 import style from '../../../layout/global.module.css';
-import { deleteBlog } from '../../BlogItem/blogItem-actions';
+import { deleteBlog } from '../blogs-actions';
 
 import styles from './Settings.module.css';
 

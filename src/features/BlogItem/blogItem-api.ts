@@ -4,7 +4,4 @@ export const blogAPI = {
   getBlog(id: string) {
     return instance.get(`blogs/${id}`);
   },
-  removeBlog(id: string) {
-    return instance.delete(`blogs/${id}`);
-  },
 };

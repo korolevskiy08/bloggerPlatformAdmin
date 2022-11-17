@@ -19,7 +19,7 @@ export const DeleteBlogs: FC<DeleteBlogsType> = ({ setOpenDeleteModal, deleteBlo
     <>
       <div className={styles.background} />
       <div className={styles.deleteModalBlock}>
-        <h2 className={`${style.titleBlog} ${styles.title}`}>Delete a blog</h2>
+        <h2 className={`${style.titleName} ${styles.title}`}>Delete a blog</h2>
         <p className={`${style.titleName} ${styles.text}`}>
           Are you sure want to delete this blog?
         </p>

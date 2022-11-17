@@ -34,9 +34,9 @@ export const BlogItem: FC = () => {
     <div className={styles.blogBlock}>
       <div className={styles.containerBlog}>
         <div className={style.titleBlock}>
-          <h2 className={style.titleBlog} role="presentation" onClick={navigateBlogs}>
+          <p className={style.titleName} role="presentation" onClick={navigateBlogs}>
             Blogs
-          </h2>
+          </p>
           <img src={arrowRight} alt="arrowRight" />
           <h3 className={style.titleName}>{blog.name}</h3>
         </div>
