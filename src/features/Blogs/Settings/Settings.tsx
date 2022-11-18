@@ -3,23 +3,26 @@ import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { DeleteBlogs } from '../../../common/Components/Modals/DeleteBlogs/DeleteBlogs';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import deleteSvg from '../../../common/icons/Delete.svg';
 import editSvg from '../../../common/icons/Edit.svg';
 import settingsSvg from '../../../common/icons/Settings.svg';
 import style from '../../../layout/global.module.css';
-import { deleteBlog } from '../blogs-actions';
 
 import styles from './Settings.module.css';
 
 type SettingType = {
-  id: string;
+  textModals: string;
+  titleModals: string;
+  deleteItemHandler: () => void;
 };
 
-export const Settings: FC<SettingType> = ({ id }) => {
+export const Settings: FC<SettingType> = ({
+  titleModals,
+  textModals,
+  deleteItemHandler,
+}) => {
   const [showSettings, setShowSettings] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const dispatch = useAppDispatch();
 
   const showSettingsHandler = (): void => {
     setShowSettings(!showSettings);
@@ -27,10 +30,6 @@ export const Settings: FC<SettingType> = ({ id }) => {
 
   const openDeleteModeHandler = (): void => {
     setOpenDeleteModal(true);
-  };
-
-  const deleteBlogHandler = (): any => {
-    dispatch(deleteBlog(id));
   };
 
   return (
@@ -60,8 +59,10 @@ export const Settings: FC<SettingType> = ({ id }) => {
         {openDeleteModal && (
           <div className={style.deleteModal}>
             <DeleteBlogs
+              textModals={textModals}
+              titleModals={titleModals}
               setOpenDeleteModal={setOpenDeleteModal}
-              deleteBlog={deleteBlogHandler}
+              deleteItem={deleteItemHandler}
             />
           </div>
         )}

@@ -2,7 +2,9 @@ import React, { FC } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import imageBlog from '../../../common/images/Gull_portrait_ca_usa.jpg';
+import { deleteBlog } from '../blogs-actions';
 import { Settings } from '../Settings/Settings';
 
 import styles from './Blog.module.css';
@@ -16,10 +18,15 @@ type BlogType = {
 
 const Blog: FC<BlogType> = ({ name, id, description, date }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const navigateBlogItem = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
     navigate(`/Blog/${id}`);
+  };
+
+  const deleteItemHandler = (): any => {
+    dispatch(deleteBlog(id));
   };
 
   return (
@@ -47,7 +54,11 @@ const Blog: FC<BlogType> = ({ name, id, description, date }) => {
             <p className={`titleName ${styles.youTube}`}>YouTube:</p> {description}
           </div>
         </div>
-        <Settings id={id} />
+        <Settings
+          deleteItemHandler={deleteItemHandler}
+          textModals="Are you sure want to delete this blog?"
+          titleModals="Delete a blog"
+        />
       </div>
     </div>
   );

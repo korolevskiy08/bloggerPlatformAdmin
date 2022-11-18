@@ -13,6 +13,8 @@
     border-bottom: 1px solid #DEDBDC;
     height: 59px;
     padding-left: 24px;
+    font-weight: 500;
+    font-size: 20px;
 }
 
 .text {

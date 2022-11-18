@@ -7,10 +7,17 @@ import styles from './deleteModals.module.css';
 
 type DeleteBlogsType = {
   setOpenDeleteModal: (value: boolean) => void;
-  deleteBlog: () => void;
+  deleteItem: () => void;
+  textModals: string;
+  titleModals: string;
 };
 
-export const DeleteBlogs: FC<DeleteBlogsType> = ({ setOpenDeleteModal, deleteBlog }) => {
+export const DeleteBlogs: FC<DeleteBlogsType> = ({
+  setOpenDeleteModal,
+  deleteItem,
+  titleModals,
+  textModals,
+}) => {
   const closeModeHandler = (): void => {
     setOpenDeleteModal(false);
   };
@@ -19,12 +26,10 @@ export const DeleteBlogs: FC<DeleteBlogsType> = ({ setOpenDeleteModal, deleteBlo
     <>
       <div className={styles.background} />
       <div className={styles.deleteModalBlock}>
-        <h2 className={`${style.titleName} ${styles.title}`}>Delete a blog</h2>
-        <p className={`${style.titleName} ${styles.text}`}>
-          Are you sure want to delete this blog?
-        </p>
+        <h2 className={`${style.titleName} ${styles.title}`}>{titleModals}</h2>
+        <p className={`${style.titleName} ${styles.text}`}>{textModals}</p>
         <div className={styles.buttonBlock}>
-          <Button title="Yes" onclick={deleteBlog} styleButton={styles.button} />
+          <Button title="Yes" onclick={deleteItem} styleButton={styles.button} />
           <Button title="No" onclick={closeModeHandler} styleButton={styles.button} />
         </div>
       </div>

@@ -42,7 +42,11 @@ export const Post: FC<PostType> = ({ blogName, content, createdAt, id }) => {
             <p className={styles.descriptionText}>{content}</p>
             <p className={styles.date}>{createdAt}</p>
           </div>
-          <Settings id={id} />
+          <Settings
+            deleteItemHandler={() => {}}
+            textModals="Are you sure want to delete this post?"
+            titleModals="Delete a post"
+          />
         </div>
       </div>
     </div>
