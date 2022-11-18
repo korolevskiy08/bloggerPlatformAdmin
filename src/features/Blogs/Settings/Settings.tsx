@@ -13,10 +13,10 @@ import { deleteBlog } from '../blogs-actions';
 import styles from './Settings.module.css';
 
 type SettingType = {
-  blogId: string;
+  id: string;
 };
 
-export const Settings: FC<SettingType> = ({ blogId }) => {
+export const Settings: FC<SettingType> = ({ id }) => {
   const [showSettings, setShowSettings] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ export const Settings: FC<SettingType> = ({ blogId }) => {
   };
 
   const deleteBlogHandler = (): any => {
-    dispatch(deleteBlog(blogId));
+    dispatch(deleteBlog(id));
   };
 
   return (

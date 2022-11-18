@@ -29,6 +29,7 @@
 
 .descriptionBlock {
     display: flex;
+    width: 300px;
 }
 
 /*post*/

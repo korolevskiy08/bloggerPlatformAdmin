@@ -42,7 +42,7 @@ export const BlogItem: FC = () => {
         </div>
         <div className={styles.backBlogs} role="presentation" onClick={navigateBlogs}>
           <img src={arrowLeft} alt="arrowLeft" />
-          <p className={styles.backBlogsText}>Back to blogs</p>
+          <p className={`titleName ${styles.backBlogsText}`}>Back to blogs</p>
         </div>
       </div>
       <div className={styles.titleImage}>

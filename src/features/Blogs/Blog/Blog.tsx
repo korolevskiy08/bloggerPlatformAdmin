@@ -29,7 +29,11 @@ const Blog: FC<BlogType> = ({ name, id, description, date }) => {
           <img src={imageBlog} alt="avatar" />
         </div>
         <div className={styles.descriptionBlock}>
-          <h3 onClick={navigateBlogItem} role="presentation" className={styles.titleBlog}>
+          <h3
+            onClick={navigateBlogItem}
+            role="presentation"
+            className={`titleName ${styles.titleBlog}`}
+          >
             {name}
           </h3>
           {date ? (
@@ -40,10 +44,10 @@ const Blog: FC<BlogType> = ({ name, id, description, date }) => {
             ''
           )}
           <div className={styles.youTubeBlock}>
-            <p className={styles.youTube}>YouTube:</p> {description}
+            <p className={`titleName ${styles.youTube}`}>YouTube:</p> {description}
           </div>
         </div>
-        <Settings blogId={id} />
+        <Settings id={id} />
       </div>
     </div>
   );
