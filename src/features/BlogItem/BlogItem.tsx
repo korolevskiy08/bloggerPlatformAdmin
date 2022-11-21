@@ -52,7 +52,8 @@ export const BlogItem: FC = () => {
         <Blog
           name={blog.name}
           id={blog.id}
-          description={blog.youtubeUrl}
+          website={blog.websiteUrl}
+          description={blog.description}
           date={blog.createdAt}
         />
         <div className={style.buttonBlock}>

@@ -39,7 +39,13 @@ export const Blogs: FC = () => {
           <div>
             {blogs.blogs.map(el => {
               return (
-                <Blog name={el.name} key={el.id} id={el.id} description={el.youtubeUrl} />
+                <Blog
+                  name={el.name}
+                  key={el.id}
+                  id={el.id}
+                  website={el.websiteUrl}
+                  description={el.description}
+                />
               );
             })}
             <div className={style.buttonBlock}>

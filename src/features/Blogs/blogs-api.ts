@@ -13,5 +13,6 @@ export type BlogType = {
   createdAt: string;
   id: string;
   name: string;
-  youtubeUrl: string;
+  websiteUrl: string;
+  description: string;
 };

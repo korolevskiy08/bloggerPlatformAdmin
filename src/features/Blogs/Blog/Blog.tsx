@@ -12,11 +12,12 @@ import styles from './Blog.module.css';
 type BlogType = {
   name: string;
   id: string;
-  description: string;
+  website: string;
   date?: string;
+  description: string;
 };
 
-const Blog: FC<BlogType> = ({ name, id, description, date }) => {
+const Blog: FC<BlogType> = ({ name, id, website, date, description }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -50,9 +51,10 @@ const Blog: FC<BlogType> = ({ name, id, description, date }) => {
           ) : (
             ''
           )}
-          <div className={styles.youTubeBlock}>
-            <p className={`titleName ${styles.youTube}`}>YouTube:</p> {description}
-          </div>
+          <p className={`titleName ${styles.youTube}`}>
+            YouTube: <a href={website}>{website}</a>
+          </p>
+          <p className="titleName">{description}</p>
         </div>
         <Settings
           deleteItemHandler={deleteItemHandler}
