@@ -2,9 +2,11 @@ import React, { FC } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import avatar from '../../../common/images/images.jpg';
 import imagePost from '../../../common/images/pexels-photo-268533.webp';
 import { Settings } from '../../Blogs/Settings/Settings';
+import { deletePost } from '../posts-actions';
 
 import styles from './post.module.css';
 
@@ -17,10 +19,15 @@ type PostType = {
 
 export const Post: FC<PostType> = ({ blogName, content, createdAt, id }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const navigatePostItem = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
     navigate(`/Post/${id}`);
+  };
+
+  const deletePostHandler = (): void => {
+    dispatch(deletePost(id));
   };
 
   return (
@@ -43,7 +50,7 @@ export const Post: FC<PostType> = ({ blogName, content, createdAt, id }) => {
             <p className={styles.date}>{createdAt}</p>
           </div>
           <Settings
-            deleteItemHandler={() => {}}
+            deleteItemHandler={deletePostHandler}
             textModals="Are you sure want to delete this post?"
             titleModals="Delete a post"
           />

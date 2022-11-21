@@ -4,6 +4,9 @@ export const postsAPI = {
   getPosts() {
     return instance.get<PostType>('posts');
   },
+  removePost(id: string) {
+    return instance.delete(`posts/${id}`);
+  },
 };
 
 export type ItemPostType = {
