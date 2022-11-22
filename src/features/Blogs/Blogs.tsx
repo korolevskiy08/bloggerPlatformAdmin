@@ -1,9 +1,11 @@
 import React, { FC, useEffect } from 'react';
 
 import { CircularProgress } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
+import { Path } from '../../common/Routes';
 import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
@@ -15,10 +17,15 @@ import styles from './Blogs.module.css';
 export const Blogs: FC = () => {
   const dispatch = useAppDispatch();
   const blogs = useAppSelector(state => state.blogs);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getBlogs());
   }, []);
+
+  const navigateNewBlog = (): void => {
+    navigate(Path.NewBlog);
+  };
 
   return (
     <div className={styles.blogsBlock}>
@@ -27,8 +34,8 @@ export const Blogs: FC = () => {
         <div className={styles.addBlogBlock}>
           <Button
             title="Add blog"
-            onclick={() => {}}
-            styleButton={styles.addBlogButton}
+            onclick={navigateNewBlog}
+            styleButton={style.addBlogButton}
           />
         </div>
         {blogs.status === 'loading' ? (

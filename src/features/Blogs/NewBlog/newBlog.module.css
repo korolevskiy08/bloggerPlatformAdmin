@@ -1,0 +1,74 @@
+.newBlog {
+    padding-left: 24px;
+    background: #faf7f8;
+    flex-grow: 1;
+}
+
+.titleBlock {
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px solid #DEDBDC;
+    width: 100%;
+}
+
+.blog {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.add {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.backBlogs {
+    display: flex;
+    padding-bottom: 12px;
+}
+
+.backText {
+    padding-left: 13px;
+    cursor: pointer;
+}
+
+.titleImage {
+    width: 940px;
+    height: 312px;
+    padding-bottom: 24px;
+}
+
+.titleImage img {
+    width: 100%;
+    height: 100%;
+}
+
+.name {
+    color: #737067;
+}
+
+.inputName {
+    border: none;
+    border-bottom: 1px solid #DEDBDC;
+    width: 940px;
+    height: 48px;
+    margin-bottom: 27px;
+    background: #faf7f8;
+    color: black;
+}
+
+.textarea {
+    width: 940px;
+    height: 120px;
+    border: 1px solid #DEDBDC;
+    border-radius: 2px;
+    background: #faf7f8;
+    color: black;
+    margin-bottom: 24px;
+}
+
+.button {
+    text-align: right;
+    padding-right: 64px;
+    margin-bottom: 24px;
+}
