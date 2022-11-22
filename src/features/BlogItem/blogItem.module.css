@@ -18,18 +18,60 @@
 }
 
 .titleImage {
-    flex-grow: 1;
+    width: 940px;
     height: 312px;
     background: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    padding-bottom: 30px;
 }
 
 .titleImage img {
     width: 100%;
     height: 100%;
+}
+
+.blog {
+    display: flex;
+}
+
+.avatarBlock {
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    padding-right: 16px;
+}
+
+.avatarBlock img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.dateBlock {
+    display: flex;
+}
+
+.creationDataText {
+    font-size: 12px;
+    line-height: 16px;
+    color: #797476;
+    padding-right: 5px;
+}
+
+.creationData {
+    font-size: 12px;
+    line-height: 16px;
+    color: black;
+}
+
+.websiteText {
+    font-size: 14px;
+    line-height: 24px;
+    color: #737067;
 }
 
 .showButton {
