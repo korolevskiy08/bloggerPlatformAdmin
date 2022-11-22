@@ -1,17 +1,28 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import arrowLeft from '../../../common/icons/arrow-left.svg';
 import arrowRight from '../../../common/icons/arrow_right.svg';
 import titleImg from '../../../common/images/blue-ocean-28668-2560x1600.jpg';
+import { Path } from '../../../common/Routes';
 import { Button } from '../../../layout/Button/Button';
 import style from '../../../layout/global.module.css';
+import { addNewBlog } from '../blogs-actions';
 
 import styles from './newBlog.module.css';
 
-export const NewBlog: FC = () => {
+type NewBlogType = {
+  editMode?: boolean;
+};
+
+export const NewBlog: FC<NewBlogType> = () => {
   const [name, setName] = useState('');
-  const [website, setWebsite] = useState('');
+  const [websiteUrl, setWebsite] = useState('');
   const [description, setDescription] = useState('');
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>): void => {
     setName(e.currentTarget.value);
@@ -23,6 +34,17 @@ export const NewBlog: FC = () => {
 
   const onChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     setDescription(e.currentTarget.value);
+  };
+
+  const addBlog = (): void => {
+    dispatch(
+      addNewBlog({
+        name,
+        description,
+        websiteUrl,
+      }),
+    );
+    navigate(Path.Blogs);
   };
 
   return (
@@ -51,7 +73,7 @@ export const NewBlog: FC = () => {
       <input
         type="text"
         onChange={onChangeWebsite}
-        value={website}
+        value={websiteUrl}
         className={`inputName ${styles.inputName}`}
         placeholder="Website"
       />
@@ -63,7 +85,7 @@ export const NewBlog: FC = () => {
         placeholder="Description"
       />
       <div className={styles.button}>
-        <Button title="Add blog" onclick={() => {}} styleButton={style.addBlogButton} />
+        <Button title="Add blog" onclick={addBlog} styleButton={style.addBlogButton} />
       </div>
     </div>
   );

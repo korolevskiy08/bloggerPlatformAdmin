@@ -52,7 +52,7 @@ const Blog: FC<BlogType> = ({ name, id, website, date, description }) => {
             ''
           )}
           <p className={`titleName ${styles.youTube}`}>
-            YouTube: <a href={website}>{website}</a>
+            Website: <a href={website}>{website}</a>
           </p>
           <p className="titleName">{description}</p>
         </div>

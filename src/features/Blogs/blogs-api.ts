@@ -7,6 +7,9 @@ export const blogsAPI = {
   removeBlog(id: string) {
     return instance.delete(`blogs/${id}`);
   },
+  newBlog(data: NewBlogType) {
+    return instance.post('blogs', data);
+  },
 };
 
 export type BlogType = {
@@ -15,4 +18,10 @@ export type BlogType = {
   name: string;
   websiteUrl: string;
   description: string;
+};
+
+export type NewBlogType = {
+  name: string;
+  description: string;
+  websiteUrl: string;
 };

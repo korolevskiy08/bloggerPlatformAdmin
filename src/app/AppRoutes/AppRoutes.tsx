@@ -12,6 +12,7 @@ import { Posts } from '../../features/Posts/Posts';
 export const AppRoutes: FC = () => {
   return (
     <Routes>
+      <Route path="/" element={<Blogs />} />
       <Route path={Path.Blogs} element={<Blogs />} />
       <Route path={Path.Blog} element={<BlogItem />} />
       <Route path={Path.NewBlog} element={<NewBlog />} />

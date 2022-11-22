@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { deleteBlog, getBlogs } from './blogs-actions';
+import { addNewBlog, deleteBlog, getBlogs } from './blogs-actions';
 import { BlogType } from './blogs-api';
 
 const slice = createSlice({
@@ -23,6 +23,9 @@ const slice = createSlice({
 
         blogs: state.blogs.filter(bl => bl.id !== action.payload!.id),
       };
+    });
+    builder.addCase(addNewBlog.fulfilled, (state, action) => {
+      state.blogs.push({ ...action.payload!.data });
     });
     builder.addMatcher(
       action => action.type.endsWith('pending'),
