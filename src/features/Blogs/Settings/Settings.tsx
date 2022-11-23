@@ -14,12 +14,14 @@ type SettingType = {
   textModals: string;
   titleModals: string;
   deleteItemHandler: () => void;
+  navigateEditBlog?: () => void;
 };
 
 export const Settings: FC<SettingType> = ({
   titleModals,
   textModals,
   deleteItemHandler,
+  navigateEditBlog,
 }) => {
   const [showSettings, setShowSettings] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -46,7 +48,7 @@ export const Settings: FC<SettingType> = ({
               <img src={deleteSvg} alt="delete" />
               <NavLink to="">Delete</NavLink>
             </li>
-            <li>
+            <li role="presentation" onClick={navigateEditBlog}>
               <img src={editSvg} alt="edit" />
               <NavLink to="" className={style.titleName}>
                 Edit

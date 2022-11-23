@@ -16,6 +16,7 @@ export const AppRoutes: FC = () => {
       <Route path={Path.Blogs} element={<Blogs />} />
       <Route path={Path.Blog} element={<BlogItem />} />
       <Route path={Path.NewBlog} element={<NewBlog />} />
+      <Route path={Path.EditBlog} element={<NewBlog editMode />} />
       <Route path={Path.Posts} element={<Posts />} />
       <Route path={Path.Post} element={<PostItem />} />
     </Routes>

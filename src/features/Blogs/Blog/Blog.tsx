@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import imageBlog from '../../../common/images/Gull_portrait_ca_usa.jpg';
+import { Path } from '../../../common/Routes';
 import { deleteBlog } from '../blogs-actions';
 import { Settings } from '../Settings/Settings';
 
@@ -12,12 +13,12 @@ import styles from './Blog.module.css';
 type BlogType = {
   name: string;
   id: string;
-  website: string;
-  date?: string;
+  websiteUrl: string;
+  createdAt: string;
   description: string;
 };
 
-const Blog: FC<BlogType> = ({ name, id, website, date, description }) => {
+const Blog: FC<BlogType> = ({ name, id, websiteUrl, createdAt, description }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -26,8 +27,19 @@ const Blog: FC<BlogType> = ({ name, id, website, date, description }) => {
     navigate(`/Blog/${id}`);
   };
 
-  const deleteItemHandler = (): any => {
+  const deleteItemHandler = (): void => {
     dispatch(deleteBlog(id));
+  };
+
+  const navigateEditBlog = (): void => {
+    navigate(Path.EditBlog, {
+      state: {
+        id,
+        name,
+        websiteUrl,
+        description,
+      },
+    });
   };
 
   return (
@@ -44,19 +56,16 @@ const Blog: FC<BlogType> = ({ name, id, website, date, description }) => {
           >
             {name}
           </h3>
-          {date ? (
-            <div>
-              <p>Blog creation date: {date?.slice(0, 10)}</p>
-            </div>
-          ) : (
-            ''
-          )}
+          <div>
+            <p>Blog creation date: {createdAt?.slice(0, 10)}</p>
+          </div>
           <p className={`titleName ${styles.youTube}`}>
-            Website: <a href={website}>{website}</a>
+            Website: <a href={websiteUrl}>{websiteUrl}</a>
           </p>
           <p className="titleName">{description}</p>
         </div>
         <Settings
+          navigateEditBlog={navigateEditBlog}
           deleteItemHandler={deleteItemHandler}
           textModals="Are you sure want to delete this blog?"
           titleModals="Delete a blog"

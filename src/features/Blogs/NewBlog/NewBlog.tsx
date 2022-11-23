@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import arrowLeft from '../../../common/icons/arrow-left.svg';
@@ -9,6 +9,8 @@ import titleImg from '../../../common/images/blue-ocean-28668-2560x1600.jpg';
 import { Path } from '../../../common/Routes';
 import { Button } from '../../../layout/Button/Button';
 import style from '../../../layout/global.module.css';
+import { editBlog } from '../../BlogItem/blogItem-actions';
+import { EditBlogType } from '../../BlogItem/blogItem-api';
 import { addNewBlog } from '../blogs-actions';
 
 import styles from './newBlog.module.css';
@@ -17,10 +19,13 @@ type NewBlogType = {
   editMode?: boolean;
 };
 
-export const NewBlog: FC<NewBlogType> = () => {
-  const [name, setName] = useState('');
-  const [websiteUrl, setWebsite] = useState('');
-  const [description, setDescription] = useState('');
+export const NewBlog: FC<NewBlogType> = ({ editMode }) => {
+  const location = useLocation();
+  const [name, setName] = useState(editMode ? location.state.name : '');
+  const [websiteUrl, setWebsite] = useState(editMode ? location.state.websiteUrl : '');
+  const [description, setDescription] = useState(
+    editMode ? location.state.description : '',
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -43,17 +48,53 @@ export const NewBlog: FC<NewBlogType> = () => {
         description,
         websiteUrl,
       }),
-    );
-    navigate(Path.Blogs);
+    )
+      .unwrap()
+      .then(() => {
+        navigate(Path.Blogs);
+      })
+      .catch((e: any) => {
+        alert(e.message);
+      });
+  };
+
+  const editBlogHandler = (): void => {
+    dispatch(
+      editBlog({
+        data: {
+          name,
+          description,
+          websiteUrl,
+        },
+        id: location.state.id,
+      } as EditBlogType),
+    )
+      .unwrap()
+      .then(() => {
+        navigate(Path.Blogs);
+      })
+      .catch((e: any) => {
+        alert(e.message);
+      });
   };
 
   return (
     <div className={styles.newBlog}>
-      <div className={styles.titleBlock}>
-        <p className={`titleName ${styles.blog}`}>Blogs</p>
-        <img src={arrowRight} alt="arrow" />
-        <p className={`titleName ${styles.add}`}>Add</p>
-      </div>
+      {editMode ? (
+        <div className={styles.titleBlock}>
+          <p className={`titleName ${styles.blog}`}>Blogs</p>
+          <img src={arrowRight} alt="arrow" />
+          <p>{location.state.name}</p>
+          <img src={arrowRight} alt="arrow" />
+          <p>Edit</p>
+        </div>
+      ) : (
+        <div className={styles.titleBlock}>
+          <p className={`titleName ${styles.blog}`}>Blogs</p>
+          <img src={arrowRight} alt="arrow" />
+          <p className={`titleName ${styles.add}`}>Add</p>
+        </div>
+      )}
       <div className={styles.backBlogs}>
         <img src={arrowLeft} alt="arrow" />
         <p className={`titleName ${styles.backText}`}>Back to blogs</p>
@@ -84,9 +125,19 @@ export const NewBlog: FC<NewBlogType> = () => {
         className={`titleName ${styles.textarea}`}
         placeholder="Description"
       />
-      <div className={styles.button}>
-        <Button title="Add blog" onclick={addBlog} styleButton={style.addBlogButton} />
-      </div>
+      {editMode ? (
+        <div className={styles.button}>
+          <Button
+            title="Edit Blog"
+            onclick={editBlogHandler}
+            styleButton={style.addBlogButton}
+          />
+        </div>
+      ) : (
+        <div className={styles.button}>
+          <Button title="Add blog" onclick={addBlog} styleButton={style.addBlogButton} />
+        </div>
+      )}
     </div>
   );
 };

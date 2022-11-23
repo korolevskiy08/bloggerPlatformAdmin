@@ -47,10 +47,11 @@ export const Blogs: FC = () => {
             {blogs.blogs.map(el => {
               return (
                 <Blog
+                  createdAt={el.createdAt}
                   name={el.name}
                   key={el.id}
                   id={el.id}
-                  website={el.websiteUrl}
+                  websiteUrl={el.websiteUrl}
                   description={el.description}
                 />
               );
