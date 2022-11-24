@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -18,6 +18,7 @@ type PostType = {
 };
 
 export const Post: FC<PostType> = ({ blogName, content, createdAt, id }) => {
+  const [showEditModal, setShowEditModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -28,6 +29,10 @@ export const Post: FC<PostType> = ({ blogName, content, createdAt, id }) => {
 
   const deletePostHandler = (): void => {
     dispatch(deletePost(id));
+  };
+
+  const openEditModal = (): void => {
+    setShowEditModal(true);
   };
 
   return (
@@ -50,6 +55,8 @@ export const Post: FC<PostType> = ({ blogName, content, createdAt, id }) => {
             <p className={styles.date}>{createdAt}</p>
           </div>
           <Settings
+            showEditModal={showEditModal}
+            navigateEditBlog={openEditModal}
             deleteItemHandler={deletePostHandler}
             textModals="Are you sure want to delete this post?"
             titleModals="Delete a post"

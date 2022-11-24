@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { CircularProgress } from '@mui/material';
 
@@ -8,11 +8,13 @@ import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
+import { PostEditPost } from './AddEditPost/PostEditPost';
 import { Post } from './Post/Post';
 import { getPosts } from './posts-actions';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
+  const [addPostModal, setAddPostModal] = useState(false);
   const dispatch = useAppDispatch();
   const posts = useAppSelector(state => state.posts);
 
@@ -20,10 +22,26 @@ export const Posts: FC = () => {
     dispatch(getPosts());
   }, []);
 
+  const showAddPostModal = (): void => {
+    setAddPostModal(true);
+  };
+
   return (
     <div className={styles.postsBlock}>
       <TitleComponent title="Posts" />
+      <div className={styles.addPostButton}>
+        <Button
+          title="Add post"
+          onclick={showAddPostModal}
+          styleButton={style.addBlogButton}
+        />
+      </div>
       <div className={styles.selectBlock} />
+      {addPostModal && (
+        <div>
+          <PostEditPost titleModal="Add post" />
+        </div>
+      )}
       {posts.status === 'loading' ? (
         <div className={style.loader}>
           <CircularProgress color="inherit" />
@@ -45,7 +63,6 @@ export const Posts: FC = () => {
           })}
         </ul>
       )}
-
       <div className={style.buttonBlock}>
         <Button
           title="Show more"

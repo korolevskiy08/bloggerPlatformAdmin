@@ -11,6 +11,7 @@ import style from '../../../layout/global.module.css';
 import styles from './Settings.module.css';
 
 type SettingType = {
+  showEditModal?: boolean;
   textModals: string;
   titleModals: string;
   deleteItemHandler: () => void;
@@ -18,6 +19,7 @@ type SettingType = {
 };
 
 export const Settings: FC<SettingType> = ({
+  showEditModal,
   titleModals,
   textModals,
   deleteItemHandler,
@@ -48,27 +50,24 @@ export const Settings: FC<SettingType> = ({
               <img src={deleteSvg} alt="delete" />
               <NavLink to="">Delete</NavLink>
             </li>
-            <li>
+            <li role="presentation" onClick={navigateEditBlog}>
               <img src={editSvg} alt="edit" />
-              <button type="button" onClick={navigateEditBlog}>
-                Edit
-              </button>
+              <NavLink to="">Edit</NavLink>
             </li>
           </ul>
         )}
       </div>
-      <div className={styles.deleteModalBlock}>
-        {openDeleteModal && (
-          <div className={style.deleteModal}>
-            <DeleteBlogs
-              textModals={textModals}
-              titleModals={titleModals}
-              setOpenDeleteModal={setOpenDeleteModal}
-              deleteItem={deleteItemHandler}
-            />
-          </div>
-        )}
-      </div>
+      {openDeleteModal && (
+        <div className={style.deleteModal}>
+          <DeleteBlogs
+            textModals={textModals}
+            titleModals={titleModals}
+            setOpenDeleteModal={setOpenDeleteModal}
+            deleteItem={deleteItemHandler}
+          />
+        </div>
+      )}
+      {showEditModal}
     </div>
   );
 };
