@@ -14,9 +14,10 @@ import styles from './addEditPost.module.css';
 
 type PostEditPostType = {
   titleModal: string;
+  setAddPostModal: (value: boolean) => void;
 };
 
-export const AddEditPost: FC<PostEditPostType> = ({ titleModal }) => {
+export const AddEditPost: FC<PostEditPostType> = ({ titleModal, setAddPostModal }) => {
   const blogs = useAppSelector(state => state.blogs);
   const [value, setValue] = useState<BlogType | null>(null);
   const dispatch = useAppDispatch();
@@ -29,7 +30,11 @@ export const AddEditPost: FC<PostEditPostType> = ({ titleModal }) => {
     setValue(blogs.blogs[0]);
   }, [blogs]);
 
-  if (blogs.status === 'loading' || !value) {
+  const closeModal = (): void => {
+    setAddPostModal(false);
+  };
+
+  if (blogs === undefined || !value) {
     return null;
   }
 
@@ -39,7 +44,7 @@ export const AddEditPost: FC<PostEditPostType> = ({ titleModal }) => {
       <div className={styles.modalBlock}>
         <div className={styles.titleBlock}>
           <h3 className={`titleName ${styles.title}`}>{titleModal}</h3>
-          <img src={close} alt="close" />
+          <img role="presentation" src={close} alt="close" onClick={closeModal} />
         </div>
         <div className={styles.titleImgBlock}>
           <img src={titleImg} alt="title img" />
