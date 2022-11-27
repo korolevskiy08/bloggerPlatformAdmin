@@ -1,11 +1,9 @@
 .modalBlock {
     width: 526px;
     height: 624px;
-    position: absolute;
+    position: fixed;
     background: #FCFBFB;
-    top: 30%;
     left: 40%;
-
 }
 
 .titleBlock {
