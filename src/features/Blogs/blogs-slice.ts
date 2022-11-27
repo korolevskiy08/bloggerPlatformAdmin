@@ -14,6 +14,7 @@ const slice = createSlice({
   extraReducers: builder => {
     builder.addCase(getBlogs.fulfilled, (state, action) => {
       state.blogs = action.payload!.data.items;
+      console.log(action.payload!.data.items);
     });
     builder.addCase(deleteBlog.fulfilled, (state, action) => {
       return {

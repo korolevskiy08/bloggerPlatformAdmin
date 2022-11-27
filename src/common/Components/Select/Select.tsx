@@ -2,10 +2,12 @@ import React, { FC, useState } from 'react';
 
 import { BlogType } from '../../../features/Blogs/blogs-api';
 
+import styles from './select.module.css';
+
 type SelectType = {
   blogs: BlogType[];
   onChange: (value: any) => void;
-  value: string;
+  value: BlogType;
 };
 
 export const Select: FC<SelectType> = ({ blogs, onChange, value }) => {
@@ -15,25 +17,36 @@ export const Select: FC<SelectType> = ({ blogs, onChange, value }) => {
     setActive(!active);
   };
 
-  const setValue = (name: string): void => {
-    onChange(name);
+  const setValue = (blog: BlogType): void => {
+    onChange(blog);
+    setActive(false);
   };
 
   return (
-    <div onChange={onChange}>
-      <div role="presentation" onClick={setActiveHandler}>
-        {value}
+    <div className={styles.select}>
+      <div
+        className={styles.selectBlock}
+        onChange={onChange}
+        role="presentation"
+        onClick={setActiveHandler}
+      >
+        {value.name}
       </div>
-      {active &&
-        blogs.map(el => {
-          return (
-            <div key={el.id}>
-              <span role="presentation" onClick={() => setValue(el.name)}>
-                {el.name}
-              </span>
-            </div>
-          );
-        })}
+      <div className={styles.options}>
+        {active &&
+          blogs.map(el => {
+            return (
+              <div
+                role="presentation"
+                onClick={() => setValue(el)}
+                className={styles.option}
+                key={el.id}
+              >
+                <p className={`titleName ${styles.titleSelect}`}>{el.name}</p>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };

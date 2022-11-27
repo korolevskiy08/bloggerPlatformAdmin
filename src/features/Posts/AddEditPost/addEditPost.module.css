@@ -4,12 +4,21 @@
     position: fixed;
     background: #FCFBFB;
     left: 40%;
+    z-index: 1;
 }
 
 .titleBlock {
     width: 100%;
     border-bottom: 1px solid #DEDBDC;
     margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleBlock img {
+    padding-right: 29px;
+    cursor: pointer;
 }
 
 .title {
@@ -33,6 +42,7 @@
 .postName {
     color: #737067;
     padding-left: 24px;
+    margin: 0;
 }
 
 .input {
@@ -40,7 +50,7 @@
     border-bottom: 1px solid #DEDBDC;
     width: 478px;
     height: 27px;
-    margin: 0 0 24px 24px;
+    margin: 0 0 27px 24px;
 }
 
 .background {
@@ -53,3 +63,18 @@
     opacity: 0.3;
 }
 
+.select {
+    padding-left: 24px;
+}
+
+.descriptionText {
+    width: 474px;
+    height: 133px;
+    border: 1px solid #DEDBDC;
+    margin: 0 0 23px 24px;
+}
+
+.button {
+    text-align: right;
+    padding-right: 24px;
+}

@@ -8,7 +8,7 @@ import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
-import { PostEditPost } from './AddEditPost/PostEditPost';
+import { AddEditPost } from './AddEditPost/AddEditPost';
 import { Post } from './Post/Post';
 import { getPosts } from './posts-actions';
 import styles from './posts.module.css';
@@ -39,7 +39,7 @@ export const Posts: FC = () => {
       <div className={styles.selectBlock} />
       {addPostModal && (
         <div>
-          <PostEditPost titleModal="Add post" />
+          <AddEditPost titleModal="Add post" />
         </div>
       )}
       {posts.status === 'loading' ? (
