@@ -39,7 +39,7 @@ export const Posts: FC = () => {
       <div className={styles.selectBlock} />
       {addPostModal && (
         <div>
-          <AddEditPost titleModal="Add post" setAddPostModal={setAddPostModal} />
+          <AddEditPost editMode titleModal="Add post" setAddPostModal={setAddPostModal} />
         </div>
       )}
       {posts.status === 'loading' ? (
@@ -54,7 +54,7 @@ export const Posts: FC = () => {
                 <Post
                   key={el.id}
                   id={el.id}
-                  blogName={el.blogName}
+                  name={el.title}
                   content={el.content}
                   createdAt={el.createdAt}
                 />

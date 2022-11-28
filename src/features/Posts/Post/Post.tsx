@@ -11,13 +11,13 @@ import { deletePost } from '../posts-actions';
 import styles from './post.module.css';
 
 type PostType = {
-  blogName: string;
+  name: string;
   content: string;
   createdAt: string;
   id: string;
 };
 
-export const Post: FC<PostType> = ({ blogName, content, createdAt, id }) => {
+export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -50,7 +50,7 @@ export const Post: FC<PostType> = ({ blogName, content, createdAt, id }) => {
             role="presentation"
             onClick={navigatePostItem}
           >
-            <h3 className={styles.titlePost}>{blogName}</h3>
+            <h3 className={styles.titlePost}>{name}</h3>
             <p className={styles.descriptionText}>{content}</p>
             <p className={styles.date}>{createdAt}</p>
           </div>

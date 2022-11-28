@@ -1,10 +1,20 @@
 .selectBlock {
+    display: flex;
     width: 478px;
     height: 36px;
     border: 1px solid #DEDBDC;
     border-radius: 2px;
     align-items: center;
     position: relative;
+    justify-content: space-between;
+}
+
+.selectBlock img{
+    padding-right: 12px;
+}
+
+.selectBlock p{
+    padding-left: 14px;
 }
 
 .select {

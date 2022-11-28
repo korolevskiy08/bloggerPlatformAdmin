@@ -16,9 +16,14 @@ import styles from './addEditPost.module.css';
 type PostEditPostType = {
   titleModal: string;
   setAddPostModal: (value: boolean) => void;
+  editMode: boolean;
 };
 
-export const AddEditPost: FC<PostEditPostType> = ({ titleModal, setAddPostModal }) => {
+export const AddEditPost: FC<PostEditPostType> = ({
+  titleModal,
+  setAddPostModal,
+  editMode,
+}) => {
   const blogs = useAppSelector(state => state.blogs);
   const [value, setValue] = useState<BlogType | null>(blogs.blogs[0]);
   const [title, setTitle] = useState('');
@@ -58,6 +63,7 @@ export const AddEditPost: FC<PostEditPostType> = ({ titleModal, setAddPostModal 
         shortDescription: 'фываоыва',
       }),
     );
+    setAddPostModal(false);
   };
 
   return (
@@ -74,15 +80,18 @@ export const AddEditPost: FC<PostEditPostType> = ({ titleModal, setAddPostModal 
         <p className={`titleName ${styles.postName}`}>Post Name</p>
         <input
           type="text"
-          className={styles.input}
+          className={`titleName ${styles.input}`}
           value={title}
           onChange={onChangeTitle}
-          placeholder="Post Name"
         />
         <p className={`titleName ${styles.postName}`}>Blog</p>
-        <div className={styles.select}>
-          <Select blogs={blogs.blogs} onChange={setValue} value={value} />
-        </div>
+
+        {editMode ? (
+          <div className={styles.select}>
+            <Select blogs={blogs.blogs} onChange={setValue} value={value} />
+          </div>
+        ) : null}
+
         <p className={`titleName ${styles.postName}`}>Description</p>
         <textarea
           className={styles.descriptionText}

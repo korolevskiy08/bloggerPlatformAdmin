@@ -26,6 +26,9 @@ const slice = createSlice({
         posts: state.posts.filter(ps => ps.id !== action.payload!.id),
       };
     });
+    // builder.addCase(addPost.fulfilled, (state, action) => {
+    //
+    // });
     builder.addMatcher(
       action => action.type.endsWith('pending'),
       state => {

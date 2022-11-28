@@ -8,8 +8,18 @@ export const postsAPI = {
     return instance.delete(`posts/${id}`);
   },
   addPost(data: AddPostType) {
-    return instance.post('posts', data);
+    return instance.post<AddPostResponseType>('posts', data);
   },
+};
+
+export type AddPostResponseType = {
+  id: string;
+  title: string;
+  shortDescription: string;
+  content: string;
+  blogId: string;
+  blogName: string;
+  createdAt: string;
 };
 
 export type ItemPostType = {

@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { BlogType } from '../../../features/Blogs/blogs-api';
+import arrowBottom from '../../icons/arrowBottom.svg';
 
 import styles from './select.module.css';
 
@@ -30,7 +31,8 @@ export const Select: FC<SelectType> = ({ blogs, onChange, value }) => {
         role="presentation"
         onClick={setActiveHandler}
       >
-        {value.name}
+        <p className="titleName">{value.name}</p>
+        <img src={arrowBottom} alt="arrow" />
       </div>
       <div className={styles.options}>
         {active &&
