@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { Select } from '../../../common/Components/Select/Select';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
@@ -9,6 +9,7 @@ import { Button } from '../../../layout/Button/Button';
 import style from '../../../layout/global.module.css';
 import { getBlogs } from '../../Blogs/blogs-actions';
 import { BlogType } from '../../Blogs/blogs-api';
+import { addPost } from '../posts-actions';
 
 import styles from './addEditPost.module.css';
 
@@ -19,7 +20,9 @@ type PostEditPostType = {
 
 export const AddEditPost: FC<PostEditPostType> = ({ titleModal, setAddPostModal }) => {
   const blogs = useAppSelector(state => state.blogs);
-  const [value, setValue] = useState<BlogType | null>(null);
+  const [value, setValue] = useState<BlogType | null>(blogs.blogs[0]);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -34,9 +37,28 @@ export const AddEditPost: FC<PostEditPostType> = ({ titleModal, setAddPostModal 
     setAddPostModal(false);
   };
 
-  if (blogs === undefined || !value) {
+  if (blogs.blogs === undefined || !value) {
     return null;
   }
+
+  const onChangeTitle = (e: ChangeEvent<HTMLInputElement>): void => {
+    setTitle(e.currentTarget.value);
+  };
+
+  const onChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+    setDescription(e.currentTarget.value);
+  };
+
+  const addPostHandler = (): void => {
+    dispatch(
+      addPost({
+        title,
+        blogId: value.id,
+        content: description,
+        shortDescription: 'фываоыва',
+      }),
+    );
+  };
 
   return (
     <>
@@ -50,15 +72,29 @@ export const AddEditPost: FC<PostEditPostType> = ({ titleModal, setAddPostModal 
           <img src={titleImg} alt="title img" />
         </div>
         <p className={`titleName ${styles.postName}`}>Post Name</p>
-        <input type="text" className={styles.input} placeholder="Post Name" />
+        <input
+          type="text"
+          className={styles.input}
+          value={title}
+          onChange={onChangeTitle}
+          placeholder="Post Name"
+        />
         <p className={`titleName ${styles.postName}`}>Blog</p>
         <div className={styles.select}>
           <Select blogs={blogs.blogs} onChange={setValue} value={value} />
         </div>
         <p className={`titleName ${styles.postName}`}>Description</p>
-        <textarea className={styles.descriptionText} />
+        <textarea
+          className={styles.descriptionText}
+          onChange={onChangeDescription}
+          value={description}
+        />
         <div className={styles.button}>
-          <Button title="Publish" onclick={() => {}} styleButton={style.addBlogButton} />
+          <Button
+            title="Publish"
+            onclick={addPostHandler}
+            styleButton={style.addBlogButton}
+          />
         </div>
       </div>
     </>

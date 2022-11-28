@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { postsAPI } from './posts-api';
+import { AddPostType, postsAPI } from './posts-api';
 
 export const getPosts = createAsyncThunk(
   'posts/getPosts',
@@ -23,6 +23,19 @@ export const deletePost = createAsyncThunk(
 
     try {
       return { id };
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const addPost = createAsyncThunk(
+  'posts/addPost',
+  async (data: AddPostType, { rejectWithValue }) => {
+    const res = await postsAPI.addPost(data);
+
+    try {
+      return res;
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }

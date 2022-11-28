@@ -7,6 +7,9 @@ export const postsAPI = {
   removePost(id: string) {
     return instance.delete(`posts/${id}`);
   },
+  addPost(data: AddPostType) {
+    return instance.post('posts', data);
+  },
 };
 
 export type ItemPostType = {
@@ -25,4 +28,11 @@ export type PostType = {
   pageSize: number;
   pagesCount: number;
   totalCount: number;
+};
+
+export type AddPostType = {
+  title: string;
+  shortDescription: string;
+  content: string;
+  blogId: string;
 };
