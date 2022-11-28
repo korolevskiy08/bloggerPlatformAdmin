@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { deletePost, getPosts } from './posts-actions';
+import { addPost, deletePost, getPosts } from './posts-actions';
 import { ItemPostType } from './posts-api';
 
 const slice = createSlice({
@@ -26,9 +26,15 @@ const slice = createSlice({
         posts: state.posts.filter(ps => ps.id !== action.payload!.id),
       };
     });
-    // builder.addCase(addPost.fulfilled, (state, action) => {
-    //
-    // });
+    builder.addCase(addPost.fulfilled, (state, action) => {
+      return {
+        ...state,
+        status: 'succeeded',
+        error: null,
+
+        posts: [action.payload!.data, ...state.posts],
+      };
+    });
     builder.addMatcher(
       action => action.type.endsWith('pending'),
       state => {
