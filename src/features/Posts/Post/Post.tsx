@@ -8,8 +8,7 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import avatar from '../../../common/images/images.jpg';
 import imagePost from '../../../common/images/pexels-photo-268533.webp';
 import { Settings } from '../../Blogs/Settings/Settings';
-import { editPost } from '../../PostItem/postItem-actions';
-import { deletePost } from '../posts-actions';
+import { deletePost, editPost } from '../posts-actions';
 
 import styles from './post.module.css';
 

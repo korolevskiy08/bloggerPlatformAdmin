@@ -23,6 +23,7 @@ export const Posts: FC = () => {
   }, []);
 
   const addPost = (title: string, blogId: string, content: string): void => {
+    console.log(blogId);
     dispatch(
       createPost({
         title,

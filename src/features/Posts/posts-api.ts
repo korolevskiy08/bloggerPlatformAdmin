@@ -10,6 +10,14 @@ export const postsAPI = {
   addPost(data: AddPostType) {
     return instance.post<AddPostResponseType>('posts', data);
   },
+  editPost({ data, id }: EditPostType) {
+    return instance.put(`posts/${id}`, data);
+  },
+};
+
+export type EditPostType = {
+  data: AddPostType;
+  id: string;
 };
 
 export type AddPostResponseType = {

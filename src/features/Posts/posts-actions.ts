@@ -19,9 +19,9 @@ export const getPosts = createAsyncThunk(
 export const deletePost = createAsyncThunk(
   'posts/deletePost',
   async (id: string, { rejectWithValue }) => {
-    await postsAPI.removePost(id);
-
     try {
+      await postsAPI.removePost(id);
+
       return { id };
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
@@ -32,10 +32,25 @@ export const deletePost = createAsyncThunk(
 export const createPost = createAsyncThunk(
   'posts/addPost',
   async (data: AddPostType, { rejectWithValue }) => {
-    const res = await postsAPI.addPost(data);
-
     try {
+      const res = await postsAPI.addPost(data);
+
       return res;
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const editPost = createAsyncThunk(
+  'post/editPost',
+  async (param: { data: AddPostType; id: string }, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await postsAPI.editPost({ data: param.data, id: param.id });
+
+      dispatch(getPosts());
+
+      return { res };
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }
