@@ -1,0 +1,45 @@
+.modalBlock {
+    width: 526px;
+    height: 624px;
+    position: fixed;
+    background: #FCFBFB;
+    left: 40%;
+    z-index: 1;
+    padding: 24px;
+}
+
+.titleImgBlock {
+    width: 180px;
+    height: 108px;
+    padding-bottom: 24px;
+}
+
+.titleImgBlock img {
+    width: 100%;
+    height: 100%;
+}
+
+.postName {
+    color: #737067;
+    margin: 0;
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid #DEDBDC;
+    width: 100%;
+    height: 27px;
+    margin-bottom: 27px;
+}
+
+.descriptionText {
+    width: 100%;
+    height: 133px;
+    border: 1px solid #DEDBDC;
+    margin-bottom: 23px;
+}
+
+.button {
+    text-align: right;
+
+}

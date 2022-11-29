@@ -1,54 +1,40 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import { BlogType } from '../../../features/Blogs/blogs-api';
-import arrowBottom from '../../icons/arrowBottom.svg';
+import { ReactComponent as ArrowBottom } from '../../icons/arrowBottom.svg';
 
 import styles from './select.module.css';
 
 type SelectType = {
-  blogs: BlogType[];
+  options: BlogType[];
+  value?: BlogType;
   onChange: (value: any) => void;
-  value: BlogType;
 };
 
-export const Select: FC<SelectType> = ({ blogs, onChange, value }) => {
-  const [active, setActive] = useState(false);
-
-  const setActiveHandler = (): void => {
-    setActive(!active);
-  };
-
-  const setValue = (blog: BlogType): void => {
-    onChange(blog);
-    setActive(false);
+export const Select: FC<SelectType> = ({ options, onChange, value }) => {
+  const selectOption = (option: BlogType): void => {
+    onChange(option);
   };
 
   return (
-    <div className={styles.select}>
-      <div
-        className={styles.selectBlock}
-        onChange={onChange}
-        role="presentation"
-        onClick={setActiveHandler}
-      >
-        <p className="titleName">{value.name}</p>
-        <img src={arrowBottom} alt="arrow" />
-      </div>
-      <div className={styles.options}>
-        {active &&
-          blogs.map(el => {
-            return (
-              <div
-                role="presentation"
-                onClick={() => setValue(el)}
-                className={styles.option}
-                key={el.id}
-              >
-                <p className={`titleName ${styles.titleSelect}`}>{el.name}</p>
-              </div>
-            );
-          })}
-      </div>
+    <div className={styles.container}>
+      <span className={styles.value}>{value?.name}</span>
+      <ArrowBottom />
+      <ul className={styles.option}>
+        {options.map(option => (
+          <li
+            role="presentation"
+            key={option.id}
+            className={styles.option}
+            onClick={e => {
+              e.stopPropagation();
+              selectOption(option);
+            }}
+          >
+            {option.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

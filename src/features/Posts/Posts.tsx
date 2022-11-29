@@ -2,19 +2,19 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { CircularProgress } from '@mui/material';
 
+import { CreatePostModal } from '../../common/Components/Modals/CreatePostModal/CreatePostModal';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
-import { AddEditPost } from './AddEditPost/AddEditPost';
 import { Post } from './Post/Post';
-import { createPost, getPosts } from './posts-actions';
+import { getPosts } from './posts-actions';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
-  const [addPostModal, setAddPostModal] = useState(false);
+  const [openCreatePostModal, setCreatePostModal] = useState(false);
   const dispatch = useAppDispatch();
   const posts = useAppSelector(state => state.posts);
 
@@ -22,22 +22,18 @@ export const Posts: FC = () => {
     dispatch(getPosts());
   }, []);
 
-  const showAddPostModal = (): void => {
-    setAddPostModal(true);
-  };
-
-  const addPost = (title: string, blogId: string, content: string): void => {
-    dispatch(
-      createPost({
-        title,
-        blogId,
-        content,
-        shortDescription: 'фываоыва',
-      }),
-    ).then(() => {
-      setAddPostModal(!addPostModal);
-    });
-  };
+  // const addPost = (title: string, blogId: string, content: string): void => {
+  //   dispatch(
+  //     createPost({
+  //       title,
+  //       blogId,
+  //       content,
+  //       shortDescription: 'фываоыва',
+  //     }),
+  //   ).then(() => {
+  //     setAddPostModal(!addPostModal);
+  //   });
+  // };
 
   return (
     <div className={styles.postsBlock}>
@@ -45,21 +41,11 @@ export const Posts: FC = () => {
       <div className={styles.addPostButton}>
         <Button
           title="Add post"
-          onclick={showAddPostModal}
+          onclick={() => setCreatePostModal(true)}
           styleButton={style.addBlogButton}
         />
       </div>
       <div className={styles.selectBlock} />
-      {addPostModal && (
-        <div>
-          <AddEditPost
-            editMode
-            titleModal="Add post"
-            closeAddEditModal={showAddPostModal}
-            addPost={addPost}
-          />
-        </div>
-      )}
       {posts.status === 'loading' ? (
         <div className={style.loader}>
           <CircularProgress color="inherit" />
@@ -88,6 +74,12 @@ export const Posts: FC = () => {
           styleButton={styles.buttonShowMore}
         />
       </div>
+      <CreatePostModal
+        createItem={() => {}}
+        isOpen={openCreatePostModal}
+        titleModal="Add post"
+        onClose={() => setCreatePostModal(false)}
+      />
     </div>
   );
 };

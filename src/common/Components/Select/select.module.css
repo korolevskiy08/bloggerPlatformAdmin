@@ -1,34 +1,3 @@
-.selectBlock {
-    display: flex;
-    width: 478px;
-    height: 36px;
-    border: 1px solid #DEDBDC;
-    border-radius: 2px;
-    align-items: center;
-    position: relative;
-    justify-content: space-between;
-}
+.container {
 
-.selectBlock img{
-    padding-right: 12px;
-}
-
-.selectBlock p{
-    padding-left: 14px;
-}
-
-.select {
-    height: 100%;
-    border: 1px solid #DEDBDC;
-    width: 478px;
-    margin-bottom: 19px;
-}
-
-.option {
-    width: 100%;
-}
-
-.titleSelect {
-    margin: 0;
-    padding: 12px 0 6px 12px;
 }
