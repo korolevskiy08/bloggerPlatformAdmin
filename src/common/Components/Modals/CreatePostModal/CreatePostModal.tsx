@@ -14,6 +14,9 @@ type CreatePostModalType = {
   onClose: () => void;
   createItem: (title: string, blogId: string, content: string) => void;
   titleModal: string;
+  editMode?: boolean;
+  name?: string;
+  content?: string;
 };
 
 export const CreatePostModal: FC<CreatePostModalType> = ({
@@ -21,10 +24,13 @@ export const CreatePostModal: FC<CreatePostModalType> = ({
   createItem,
   onClose,
   isOpen,
+  content,
+  name,
+  editMode,
 }) => {
   const blogs = useAppSelector(state => state.blogs.blogs);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState(editMode ? name : '');
+  const [description, setDescription] = useState(editMode ? content : '');
   const [value, setValue] = useState<typeof blogs[0] | undefined>(blogs[0]);
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -36,7 +42,7 @@ export const CreatePostModal: FC<CreatePostModalType> = ({
   };
 
   const createItemHandler = (): void => {
-    createItem(title, value!.id, description);
+    createItem(title!, value!.id, description!);
     setTitle('');
     setDescription('');
   };
@@ -59,8 +65,12 @@ export const CreatePostModal: FC<CreatePostModalType> = ({
           value={title}
           onChange={onChangeTitle}
         />
-        <p className={`titleName ${styles.postName}`}>Blog</p>
-        <Select options={blogs} onChange={o => setValue(o)} value={value} />
+        {editMode ? null : (
+          <>
+            <p className={`titleName ${styles.postName}`}>Blog</p>
+            <Select options={blogs} onChange={o => setValue(o)} value={value} />
+          </>
+        )}
         <p className={`titleName ${styles.postName}`}>Description</p>
         <textarea
           className={styles.descriptionText}

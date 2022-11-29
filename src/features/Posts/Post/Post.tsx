@@ -2,11 +2,13 @@ import React, { FC, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { CreatePostModal } from '../../../common/Components/Modals/CreatePostModal/CreatePostModal';
 import { DeleteModal } from '../../../common/Components/Modals/DeleteModal/DeleteModal';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import avatar from '../../../common/images/images.jpg';
 import imagePost from '../../../common/images/pexels-photo-268533.webp';
 import { Settings } from '../../Blogs/Settings/Settings';
+import { editPost } from '../../PostItem/postItem-actions';
 import { deletePost } from '../posts-actions';
 
 import styles from './post.module.css';
@@ -20,6 +22,7 @@ type PostType = {
 
 export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openEditPostModal, setEditPostModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -30,6 +33,20 @@ export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
 
   const removePost = (): void => {
     dispatch(deletePost(id));
+  };
+
+  const editPostHandler = (title: string, blogId: string, content: string): void => {
+    dispatch(
+      editPost({
+        data: {
+          title,
+          shortDescription: 'description',
+          content,
+          blogId,
+        },
+        id,
+      }),
+    );
   };
 
   return (
@@ -53,7 +70,7 @@ export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
           </div>
           <Settings
             openDeleteModal={() => setOpenDeleteModal(true)}
-            navigateEditMode={() => {}}
+            navigateEditMode={() => setEditPostModal(true)}
           />
         </div>
       </div>
@@ -63,6 +80,15 @@ export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
         deleteItem={removePost}
         textModals="Are you sure you want to delete this post?"
         title="Delete a post"
+      />
+      <CreatePostModal
+        editMode
+        name={name}
+        content={content}
+        isOpen={openEditPostModal}
+        onClose={() => setEditPostModal(false)}
+        createItem={editPostHandler}
+        titleModal="Edit post"
       />
     </div>
   );
