@@ -32,11 +32,7 @@ export const Blogs: FC = () => {
       <div className={styles.container}>
         <TitleComponent title="Blogs" />
         <div className={styles.addBlogBlock}>
-          <Button
-            title="Add blog"
-            onclick={navigateNewBlog}
-            styleButton={style.addBlogButton}
-          />
+          <Button title="Add blog" onclick={navigateNewBlog} styleButton={style.button} />
         </div>
         {blogs.status === 'loading' ? (
           <div className={style.loader}>

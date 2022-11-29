@@ -10,7 +10,7 @@ import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
 import { Post } from './Post/Post';
-import { getPosts } from './posts-actions';
+import { createPost, getPosts } from './posts-actions';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
@@ -22,18 +22,18 @@ export const Posts: FC = () => {
     dispatch(getPosts());
   }, []);
 
-  // const addPost = (title: string, blogId: string, content: string): void => {
-  //   dispatch(
-  //     createPost({
-  //       title,
-  //       blogId,
-  //       content,
-  //       shortDescription: 'фываоыва',
-  //     }),
-  //   ).then(() => {
-  //     setAddPostModal(!addPostModal);
-  //   });
-  // };
+  const addPost = (title: string, blogId: string, content: string): void => {
+    dispatch(
+      createPost({
+        title,
+        blogId,
+        content,
+        shortDescription: 'фываоыва',
+      }),
+    ).then(() => {
+      setCreatePostModal(false);
+    });
+  };
 
   return (
     <div className={styles.postsBlock}>
@@ -42,7 +42,7 @@ export const Posts: FC = () => {
         <Button
           title="Add post"
           onclick={() => setCreatePostModal(true)}
-          styleButton={style.addBlogButton}
+          styleButton={style.button}
         />
       </div>
       <div className={styles.selectBlock} />
@@ -75,7 +75,7 @@ export const Posts: FC = () => {
         />
       </div>
       <CreatePostModal
-        createItem={() => {}}
+        createItem={addPost}
         isOpen={openCreatePostModal}
         titleModal="Add post"
         onClose={() => setCreatePostModal(false)}

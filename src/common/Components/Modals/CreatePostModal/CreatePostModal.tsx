@@ -12,7 +12,7 @@ import styles from './createPost.module.css';
 type CreatePostModalType = {
   isOpen: boolean;
   onClose: () => void;
-  createItem: () => void;
+  createItem: (title: string, blogId: string, content: string) => void;
   titleModal: string;
 };
 
@@ -27,14 +27,18 @@ export const CreatePostModal: FC<CreatePostModalType> = ({
   const [description, setDescription] = useState('');
   const [value, setValue] = useState<typeof blogs[0] | undefined>(blogs[0]);
 
-  console.log(value);
-
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.currentTarget.value);
   };
 
   const onChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     setDescription(e.currentTarget.value);
+  };
+
+  const createItemHandler = (): void => {
+    createItem(title, value!.id, description);
+    setTitle('');
+    setDescription('');
   };
 
   return (
@@ -64,7 +68,11 @@ export const CreatePostModal: FC<CreatePostModalType> = ({
           value={description}
         />
         <div className={styles.button}>
-          <Button title="Publish" onclick={createItem} styleButton={style.button} />
+          <Button
+            title="Publish"
+            onclick={createItemHandler}
+            styleButton={style.button}
+          />
         </div>
       </div>
     </BasicModal>
