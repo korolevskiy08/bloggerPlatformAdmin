@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { DeleteModal } from '../../../common/Components/Modals/DeleteModal/DeleteModal';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import avatar from '../../../common/images/images.jpg';
 import imagePost from '../../../common/images/pexels-photo-268533.webp';
@@ -18,7 +19,7 @@ type PostType = {
 };
 
 export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -27,12 +28,8 @@ export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
     navigate(`/Post/${id}`);
   };
 
-  const deletePostHandler = (): void => {
+  const removePost = (): void => {
     dispatch(deletePost(id));
-  };
-
-  const openEditModal = (): void => {
-    setShowEditModal(true);
   };
 
   return (
@@ -55,14 +52,18 @@ export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
             <p className={styles.date}>{createdAt}</p>
           </div>
           <Settings
-            showEditModal={showEditModal}
-            navigateEditBlog={openEditModal}
-            deleteItemHandler={deletePostHandler}
-            textModals="Are you sure want to delete this post?"
-            titleModals="Delete a post"
+            openDeleteModal={() => setOpenDeleteModal(true)}
+            navigateEditMode={() => {}}
           />
         </div>
       </div>
+      <DeleteModal
+        isOpen={openDeleteModal}
+        onClose={() => setOpenDeleteModal(false)}
+        deleteItem={removePost}
+        textModals="Are you sure you want to delete this post?"
+        title="Delete a post"
+      />
     </div>
   );
 };

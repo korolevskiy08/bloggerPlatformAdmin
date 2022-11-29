@@ -1,50 +1,40 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { Select } from '../../../common/Components/Select/Select';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import close from '../../../common/icons/close.svg';
 import titleImg from '../../../common/images/pexels-photo-268533.webp';
 import { Button } from '../../../layout/Button/Button';
 import style from '../../../layout/global.module.css';
-import { getBlogs } from '../../Blogs/blogs-actions';
 import { BlogType } from '../../Blogs/blogs-api';
-import { addPost } from '../posts-actions';
 
 import styles from './addEditPost.module.css';
 
 type PostEditPostType = {
   titleModal: string;
-  setAddPostModal: (value: boolean) => void;
+  closeAddEditModal: () => void;
+  addPost: (title: string, blogId: string, content: string) => void;
   editMode: boolean;
 };
 
 export const AddEditPost: FC<PostEditPostType> = ({
+  addPost,
   titleModal,
-  setAddPostModal,
+  closeAddEditModal,
   editMode,
 }) => {
   const blogs = useAppSelector(state => state.blogs);
   const [value, setValue] = useState<BlogType | null>(blogs.blogs[0]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getBlogs());
-  }, []);
 
   useEffect(() => {
     setValue(blogs.blogs[0]);
   }, [blogs]);
 
   const closeModal = (): void => {
-    setAddPostModal(false);
+    closeAddEditModal();
   };
-
-  if (blogs.blogs === undefined || !value) {
-    return null;
-  }
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.currentTarget.value);
@@ -54,16 +44,12 @@ export const AddEditPost: FC<PostEditPostType> = ({
     setDescription(e.currentTarget.value);
   };
 
+  if (blogs.blogs === undefined || !value) {
+    return null;
+  }
+
   const addPostHandler = (): void => {
-    dispatch(
-      addPost({
-        title,
-        blogId: value.id,
-        content: description,
-        shortDescription: 'фываоыва',
-      }),
-    );
-    setAddPostModal(false);
+    addPost(title, value.id, description);
   };
 
   return (

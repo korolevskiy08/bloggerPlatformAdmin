@@ -13,13 +13,13 @@ import { editBlog } from '../../BlogItem/blogItem-actions';
 import { EditBlogType } from '../../BlogItem/blogItem-api';
 import { addNewBlog } from '../blogs-actions';
 
-import styles from './newBlog.module.css';
+import styles from './addEditBlog.module.css';
 
 type NewBlogType = {
   editMode?: boolean;
 };
 
-export const NewBlog: FC<NewBlogType> = ({ editMode }) => {
+export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
   const location = useLocation();
   const [name, setName] = useState(editMode ? location.state.name : '');
   const [websiteUrl, setWebsite] = useState(editMode ? location.state.websiteUrl : '');

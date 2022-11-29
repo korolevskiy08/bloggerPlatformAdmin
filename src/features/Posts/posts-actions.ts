@@ -29,7 +29,7 @@ export const deletePost = createAsyncThunk(
   },
 );
 
-export const addPost = createAsyncThunk(
+export const createPost = createAsyncThunk(
   'posts/addPost',
   async (data: AddPostType, { rejectWithValue }) => {
     const res = await postsAPI.addPost(data);

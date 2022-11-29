@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addPost, deletePost, getPosts } from './posts-actions';
+import { createPost, deletePost, getPosts } from './posts-actions';
 import { ItemPostType } from './posts-api';
 
 const slice = createSlice({
@@ -26,7 +26,7 @@ const slice = createSlice({
         posts: state.posts.filter(ps => ps.id !== action.payload!.id),
       };
     });
-    builder.addCase(addPost.fulfilled, (state, action) => {
+    builder.addCase(createPost.fulfilled, (state, action) => {
       return {
         ...state,
         status: 'succeeded',

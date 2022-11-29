@@ -10,7 +10,7 @@ import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
 import { AddEditPost } from './AddEditPost/AddEditPost';
 import { Post } from './Post/Post';
-import { getPosts } from './posts-actions';
+import { createPost, getPosts } from './posts-actions';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
@@ -26,6 +26,19 @@ export const Posts: FC = () => {
     setAddPostModal(true);
   };
 
+  const addPost = (title: string, blogId: string, content: string): void => {
+    dispatch(
+      createPost({
+        title,
+        blogId,
+        content,
+        shortDescription: 'фываоыва',
+      }),
+    ).then(() => {
+      setAddPostModal(!addPostModal);
+    });
+  };
+
   return (
     <div className={styles.postsBlock}>
       <TitleComponent title="Posts" />
@@ -39,7 +52,12 @@ export const Posts: FC = () => {
       <div className={styles.selectBlock} />
       {addPostModal && (
         <div>
-          <AddEditPost editMode titleModal="Add post" setAddPostModal={setAddPostModal} />
+          <AddEditPost
+            editMode
+            titleModal="Add post"
+            closeAddEditModal={showAddPostModal}
+            addPost={addPost}
+          />
         </div>
       )}
       {posts.status === 'loading' ? (
