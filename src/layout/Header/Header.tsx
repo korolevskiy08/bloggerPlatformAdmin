@@ -8,7 +8,10 @@ export const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={style.container}>
-        <p className={styles.title}>Blogger Platform</p>
+        <div className={styles.content}>
+          <p className={styles.title}>Blogger Platform</p>
+          <p>Superadmin</p>
+        </div>
       </div>
     </header>
   );
