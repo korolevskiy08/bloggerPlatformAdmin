@@ -12,10 +12,10 @@ import { Path } from '../../common/Routes';
 import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 
-import { getBlog } from './blogItem-actions';
-import styles from './blogItem.module.css';
+import { getBlog } from './blog-actions';
+import styles from './blog.module.css';
 
-export const BlogItem: FC = () => {
+export const Blog: FC = () => {
   const { blogId } = useParams();
   const blog = useAppSelector(state => state.blog.blog);
   const dispatch = useAppDispatch();

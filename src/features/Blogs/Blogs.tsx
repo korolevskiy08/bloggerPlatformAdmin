@@ -10,9 +10,9 @@ import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
-import Blog from './Blog/Blog';
+import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';
-import styles from './Blogs.module.css';
+import styles from './blogs.module.css';
 
 export const Blogs: FC = () => {
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ export const Blogs: FC = () => {
           <div>
             {blogs.blogs.map(el => {
               return (
-                <Blog
+                <BlogItem
                   createdAt={el.createdAt}
                   name={el.name}
                   key={el.id}

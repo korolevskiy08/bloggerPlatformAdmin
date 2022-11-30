@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ItemPostType } from '../Posts/posts-api';
 
-import { getPost } from './postItem-actions';
+import { getPost } from './post-actions';
 
 const slice = createSlice({
   name: 'post',

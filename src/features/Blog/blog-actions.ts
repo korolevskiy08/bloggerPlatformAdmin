@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { NewBlogType } from '../Blogs/blogs-api';
 
-import { blogAPI } from './blogItem-api';
+import { blogAPI } from './blog-api';
 
 export const getBlog = createAsyncThunk(
   'blog/getBlog',

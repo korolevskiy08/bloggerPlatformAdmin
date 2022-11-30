@@ -10,7 +10,7 @@ import imagePost from '../../../common/images/pexels-photo-268533.webp';
 import { Settings } from '../../Blogs/Settings/Settings';
 import { deletePost, editPost } from '../posts-actions';
 
-import styles from './post.module.css';
+import styles from './postItem.module.css';
 
 type PostType = {
   name: string;
@@ -19,7 +19,7 @@ type PostType = {
   id: string;
 };
 
-export const Post: FC<PostType> = ({ name, content, createdAt, id }) => {
+export const PostItem: FC<PostType> = ({ name, content, createdAt, id }) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openEditPostModal, setEditPostModal] = useState(false);
   const navigate = useNavigate();

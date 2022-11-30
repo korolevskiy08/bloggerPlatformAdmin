@@ -9,7 +9,7 @@ import { Path } from '../../../common/Routes';
 import { deleteBlog } from '../blogs-actions';
 import { Settings } from '../Settings/Settings';
 
-import styles from './Blog.module.css';
+import styles from './blogItem.module.css';
 
 type BlogType = {
   name: string;
@@ -19,7 +19,7 @@ type BlogType = {
   description: string;
 };
 
-const Blog: FC<BlogType> = ({ name, id, websiteUrl, createdAt, description }) => {
+const BlogItem: FC<BlogType> = ({ name, id, websiteUrl, createdAt, description }) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -82,4 +82,4 @@ const Blog: FC<BlogType> = ({ name, id, websiteUrl, createdAt, description }) =>
   );
 };
 
-export default Blog;
+export default BlogItem;

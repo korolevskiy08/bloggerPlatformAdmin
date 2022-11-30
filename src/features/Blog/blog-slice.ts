@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { BlogType } from '../Blogs/blogs-api';
 
-import { getBlog } from './blogItem-actions';
+import { getBlog } from './blog-actions';
 
 const slice = createSlice({
   name: 'blog',

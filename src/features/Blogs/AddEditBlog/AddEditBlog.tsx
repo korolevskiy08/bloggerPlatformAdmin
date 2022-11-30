@@ -9,8 +9,8 @@ import titleImg from '../../../common/images/blue-ocean-28668-2560x1600.jpg';
 import { Path } from '../../../common/Routes';
 import { Button } from '../../../layout/Button/Button';
 import style from '../../../layout/global.module.css';
-import { editBlog } from '../../BlogItem/blogItem-actions';
-import { EditBlogType } from '../../BlogItem/blogItem-api';
+import { editBlog } from '../../Blog/blog-actions';
+import { EditBlogType } from '../../Blog/blog-api';
 import { addNewBlog } from '../blogs-actions';
 
 import styles from './addEditBlog.module.css';
@@ -28,6 +28,10 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const navigateBlogs = (): void => {
+    navigate(Path.Blogs);
+  };
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>): void => {
     setName(e.currentTarget.value);
@@ -82,7 +86,13 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
     <div className={styles.newBlog}>
       {editMode ? (
         <div className={styles.titleBlock}>
-          <p className={`titleName ${styles.blog}`}>Blogs</p>
+          <p
+            role="presentation"
+            onClick={navigateBlogs}
+            className={`titleName ${styles.blog}`}
+          >
+            Blogs
+          </p>
           <img src={arrowRight} alt="arrow" />
           <p>{location.state.name}</p>
           <img src={arrowRight} alt="arrow" />
@@ -97,12 +107,18 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
       )}
       <div className={styles.backBlogs}>
         <img src={arrowLeft} alt="arrow" />
-        <p className={`titleName ${styles.backText}`}>Back to blogs</p>
+        <p
+          role="presentation"
+          onClick={navigateBlogs}
+          className={`titleName ${styles.backText}`}
+        >
+          Back to blogs
+        </p>
       </div>
       <div className={styles.titleImage}>
         <img src={titleImg} alt="title" />
       </div>
-      <p className={`titleName ${styles.name}`}>Blog Name</p>
+      <p className={`titleName ${styles.name}`}>BlogItem Name</p>
       <input
         onChange={onChangeName}
         value={name}
@@ -118,7 +134,7 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
         className={`inputName ${styles.inputName}`}
         placeholder="Website"
       />
-      <p className={`titleName ${styles.name}`}>Blog Description</p>
+      <p className={`titleName ${styles.name}`}>BlogItem Description</p>
       <textarea
         onChange={onChangeDescription}
         value={description}
@@ -128,14 +144,14 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
       {editMode ? (
         <div className={styles.button}>
           <Button
-            title="Edit Blog"
+            title="Edit BlogItem"
             onclick={editBlogHandler}
-            styleButton={style.addBlogButton}
+            styleButton={style.button}
           />
         </div>
       ) : (
         <div className={styles.button}>
-          <Button title="Add blog" onclick={addBlog} styleButton={style.addBlogButton} />
+          <Button title="Add blog" onclick={addBlog} styleButton={style.button} />
         </div>
       )}
     </div>

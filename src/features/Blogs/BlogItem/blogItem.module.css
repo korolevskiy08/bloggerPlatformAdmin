@@ -5,9 +5,8 @@
 }
 
 .avatarBlogs {
-    width: 156px;
+    min-width: 156px;
     height: 156px;
-    background: white;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { postAPI } from './postItem-api';
+import { postAPI } from './post-api';
 
 export const getPost = createAsyncThunk(
   'post/getPost',
