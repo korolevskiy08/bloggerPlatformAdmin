@@ -24,7 +24,7 @@ export const DeleteModal: FC<DeleteBlogsType> = ({
   return (
     <BasicModal open={isOpen} onClose={onClose} title={title} className={styles.content}>
       <div className={styles.deleteModalBlock}>
-        <p className={`${style.titleName} ${styles.text}`}>{textModals}</p>
+        <p className={`${style.text} ${styles.text}`}>{textModals}</p>
         <div className={styles.buttonBlock}>
           <Button onclick={deleteItem} styleButton={`${style.button} ${styles.button}`}>
             Yes

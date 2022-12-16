@@ -24,7 +24,7 @@ export const BasicModal: FC<BasicModalType> = ({
     <div className={open ? `${styles.modal} ${styles.active}` : `${styles.modal}`}>
       <div className={className}>
         <div className={styles.titleBlock}>
-          <h2 className={`${style.titleName} ${styles.title}`}>{title}</h2>
+          <h2 className={`${style.text} ${styles.title}`}>{title}</h2>
           <Close onClick={onClose} className={styles.close} />
         </div>
         {children}

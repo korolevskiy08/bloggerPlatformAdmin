@@ -6,12 +6,14 @@ import { blogSlice } from '../features/Blog/blog-slice';
 import { blogsSlice } from '../features/Blogs/blogs-slice';
 import { postSlice } from '../features/Post/post-slice';
 import { postsSlice } from '../features/Posts/posts-slice';
+import { usersSlice } from '../features/Users/users-slice';
 
 const rootReducer = combineReducers({
   blogs: blogsSlice,
   blog: blogSlice,
   posts: postsSlice,
   post: postSlice,
+  users: usersSlice,
 });
 
 export const store = configureStore({

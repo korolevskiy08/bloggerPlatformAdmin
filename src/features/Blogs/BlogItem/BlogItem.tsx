@@ -54,17 +54,17 @@ const BlogItem: FC<BlogType> = ({ name, id, websiteUrl, createdAt, description }
           <h3
             onClick={navigateBlogItem}
             role="presentation"
-            className={`titleName ${styles.titleBlog}`}
+            className={`text ${styles.titleBlog}`}
           >
             {name}
           </h3>
           <div>
             <p>Blog creation date: {createdAt?.slice(0, 10)}</p>
           </div>
-          <p className={`titleName ${styles.youTube}`}>
+          <p className={`text ${styles.youTube}`}>
             Website: <a href={websiteUrl}>{websiteUrl}</a>
           </p>
-          <p className="titleName">{description}</p>
+          <p className="text">{description}</p>
         </div>
         <Settings
           navigateEditMode={navigateEditBlog}

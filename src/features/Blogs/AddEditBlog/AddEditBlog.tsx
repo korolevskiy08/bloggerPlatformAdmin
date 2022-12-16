@@ -89,7 +89,7 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
           <p
             role="presentation"
             onClick={navigateBlogs}
-            className={`titleName ${styles.blog}`}
+            className={`text ${styles.blog}`}
           >
             Blogs
           </p>
@@ -100,9 +100,9 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
         </div>
       ) : (
         <div className={styles.titleBlock}>
-          <p className={`titleName ${styles.blog}`}>Blogs</p>
+          <p className={`text ${styles.blog}`}>Blogs</p>
           <img src={arrowRight} alt="arrow" />
-          <p className={`titleName ${styles.add}`}>Add</p>
+          <p className={`text ${styles.add}`}>Add</p>
         </div>
       )}
       <div className={styles.backBlogs}>
@@ -110,7 +110,7 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
         <p
           role="presentation"
           onClick={navigateBlogs}
-          className={`titleName ${styles.backText}`}
+          className={`text ${styles.backText}`}
         >
           Back to blogs
         </p>
@@ -118,7 +118,7 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
       <div className={styles.titleImage}>
         <img src={titleImg} alt="title" />
       </div>
-      <p className={`titleName ${styles.name}`}>BlogItem Name</p>
+      <p className={`text ${styles.name}`}>BlogItem Name</p>
       <input
         onChange={onChangeName}
         value={name}
@@ -126,7 +126,7 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
         className={`inputName ${styles.inputName}`}
         placeholder="Name"
       />
-      <p className={`titleName ${styles.name}`}>Website</p>
+      <p className={`text ${styles.name}`}>Website</p>
       <input
         type="text"
         onChange={onChangeWebsite}
@@ -134,11 +134,11 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
         className={`inputName ${styles.inputName}`}
         placeholder="Website"
       />
-      <p className={`titleName ${styles.name}`}>BlogItem Description</p>
+      <p className={`text ${styles.name}`}>BlogItem Description</p>
       <textarea
         onChange={onChangeDescription}
         value={description}
-        className={`titleName ${styles.textarea}`}
+        className={`text ${styles.textarea}`}
         placeholder="Description"
       />
       {editMode ? (

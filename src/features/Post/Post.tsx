@@ -32,11 +32,11 @@ export const Post: FC = () => {
   return (
     <div className={styles.postBlock}>
       <div className={style.titleBlock}>
-        <p className={style.titleBlog} role="presentation" onClick={navigatePosts}>
+        <p className={style.text} role="presentation" onClick={navigatePosts}>
           Posts
         </p>
         <img src={arrowRight} alt="arrow right" />
-        <p className={style.titleName}>{post.blogName}</p>
+        <p className={style.text}>{post.blogName}</p>
       </div>
       <div className={styles.backPostsBlock} role="presentation" onClick={navigatePosts}>
         <img src={arrowLeft} alt="arrow left" />
@@ -44,16 +44,16 @@ export const Post: FC = () => {
       </div>
       <div className={styles.avatarBlock}>
         <img src={avatar} alt="avatar" />
-        <p className={`${style.titleName} ${styles.blogName}`}>{post.blogName}</p>
+        <p className={`${style.text} ${styles.blogName}`}>{post.blogName}</p>
       </div>
-      <p className={`titleName ${styles.postName}`}>{post.blogName}</p>
-      <p className={`${style.titleName} ${styles.postDate}`}>
+      <p className={`text ${styles.postName}`}>{post.blogName}</p>
+      <p className={`${style.text} ${styles.postDate}`}>
         {/* {`${post.createdAt.slice(0, 10)}`} */}
       </p>
       <div className={styles.postImg}>
         <img src={imgPost} alt="post img" />
       </div>
-      <p className={`${style.titleName} ${styles.textPost}`}>
+      <p className={`${style.text} ${styles.textPost}`}>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi deleniti
         id, modi natus perspiciatis quam saepe voluptas. Aperiam, assumenda, eum? Debitis
         ducimus minus molestias omnis quidem sint ullam veritatis!

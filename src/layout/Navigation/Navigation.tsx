@@ -17,19 +17,19 @@ export const Navigation: FC = () => {
         <li className={`${styles.activeList} ${styles.activeLink}`}>
           <NavLink to={Path.Blogs}>
             <Blog />
-            <span className={`${style.titleName} ${styles.link}`}>Blogs</span>
+            <span className={`${style.text} ${styles.link}`}>Blogs</span>
           </NavLink>
         </li>
         <li className={`${styles.activeList} ${styles.activeLink}`}>
           <NavLink to={Path.Posts}>
             <Post />
-            <span className={`${style.titleName} ${styles.link}`}>Posts</span>
+            <span className={`${style.text} ${styles.link}`}>Posts</span>
           </NavLink>
         </li>
         <li className={`${styles.activeList} ${styles.activeLink}`}>
           <NavLink to={Path.Users}>
             <Users />
-            <span className={`${style.titleName} ${styles.link}`}>Users</span>
+            <span className={`${style.text} ${styles.link}`}>Users</span>
           </NavLink>
         </li>
       </ul>

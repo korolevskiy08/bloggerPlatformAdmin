@@ -58,20 +58,20 @@ export const CreatePostModal: FC<CreatePostModalType> = ({
         <div className={styles.titleImgBlock}>
           <img src={titleImg} alt="title img" />
         </div>
-        <p className={`titleName ${styles.postName}`}>Post Name</p>
+        <p className={`text ${styles.postName}`}>Post Name</p>
         <input
           type="text"
-          className={`titleName ${styles.input}`}
+          className={`text ${styles.input}`}
           value={title}
           onChange={onChangeTitle}
         />
         {editMode ? null : (
           <>
-            <p className={`titleName ${styles.postName}`}>Blog</p>
+            <p className={`text ${styles.postName}`}>Blog</p>
             <Select options={blogs} onChange={o => setValue(o)} value={value} />
           </>
         )}
-        <p className={`titleName ${styles.postName}`}>Description</p>
+        <p className={`text ${styles.postName}`}>Description</p>
         <textarea
           className={styles.descriptionText}
           onChange={onChangeDescription}
