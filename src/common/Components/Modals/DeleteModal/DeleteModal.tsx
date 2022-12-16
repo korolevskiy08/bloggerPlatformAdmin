@@ -26,16 +26,12 @@ export const DeleteModal: FC<DeleteBlogsType> = ({
       <div className={styles.deleteModalBlock}>
         <p className={`${style.titleName} ${styles.text}`}>{textModals}</p>
         <div className={styles.buttonBlock}>
-          <Button
-            title="Yes"
-            onclick={deleteItem}
-            styleButton={`${style.button} ${styles.button}`}
-          />
-          <Button
-            title="No"
-            onclick={onClose}
-            styleButton={`${style.button} ${styles.button}`}
-          />
+          <Button onclick={deleteItem} styleButton={`${style.button} ${styles.button}`}>
+            Yes
+          </Button>
+          <Button onclick={onClose} styleButton={`${style.button} ${styles.button}`}>
+            No
+          </Button>
         </div>
       </div>
     </BasicModal>

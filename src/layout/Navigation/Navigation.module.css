@@ -1,5 +1,6 @@
 .navBlock{
     width: 252px;
+    padding-top: 15px;
 }
 
 .link{
@@ -22,7 +23,7 @@ a {
 .nav li:active {
     color: red;
 }
-.navSvg * {
+* {
     fill: #1A1718;
 }
 

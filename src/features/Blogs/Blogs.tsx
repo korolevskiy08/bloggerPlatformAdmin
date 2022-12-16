@@ -32,7 +32,9 @@ export const Blogs: FC = () => {
       <div className={styles.container}>
         <TitleComponent title="Blogs" />
         <div className={styles.addBlogBlock}>
-          <Button title="Add blog" onclick={navigateNewBlog} styleButton={style.button} />
+          <Button onclick={navigateNewBlog} styleButton={style.button}>
+            Add blog
+          </Button>
         </div>
         {blogs.status === 'loading' ? (
           <div className={style.loader}>
@@ -53,11 +55,9 @@ export const Blogs: FC = () => {
               );
             })}
             <div className={style.buttonBlock}>
-              <Button
-                title="Show more"
-                onclick={() => {}}
-                styleButton={styles.buttonShowMore}
-              />
+              <Button onclick={() => {}} styleButton={styles.buttonShowMore}>
+                Show more
+              </Button>
             </div>
           </div>
         )}

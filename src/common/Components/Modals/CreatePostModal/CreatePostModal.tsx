@@ -78,11 +78,9 @@ export const CreatePostModal: FC<CreatePostModalType> = ({
           value={description}
         />
         <div className={styles.button}>
-          <Button
-            title="Publish"
-            onclick={createItemHandler}
-            styleButton={style.button}
-          />
+          <Button onclick={createItemHandler} styleButton={style.button}>
+            Publish
+          </Button>
         </div>
       </div>
     </BasicModal>

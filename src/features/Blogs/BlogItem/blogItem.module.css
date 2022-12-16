@@ -5,7 +5,7 @@
 }
 
 .avatarBlogs {
-    min-width: 156px;
+    width: 156px;
     height: 156px;
     display: flex;
     flex-direction: column;

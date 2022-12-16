@@ -1,6 +1,7 @@
 .blogsBlock{
     background: #faf7f8;
     flex-grow: 1;
+    padding-top: 29px;
 }
 
 .buttonShowMore {
@@ -8,7 +9,6 @@
     height: 36px;
     border: 1px solid #1A1718;
     border-radius: 2px;
-    font-family: 'Inter';
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;

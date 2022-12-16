@@ -143,15 +143,15 @@ export const AddEditBlog: FC<NewBlogType> = ({ editMode }) => {
       />
       {editMode ? (
         <div className={styles.button}>
-          <Button
-            title="Edit BlogItem"
-            onclick={editBlogHandler}
-            styleButton={style.button}
-          />
+          <Button onclick={editBlogHandler} styleButton={style.button}>
+            Edit Blog
+          </Button>
         </div>
       ) : (
         <div className={styles.button}>
-          <Button title="Add blog" onclick={addBlog} styleButton={style.button} />
+          <Button onclick={addBlog} styleButton={style.button}>
+            Add blog
+          </Button>
         </div>
       )}
     </div>

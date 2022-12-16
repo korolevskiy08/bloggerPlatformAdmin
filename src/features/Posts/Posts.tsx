@@ -40,11 +40,9 @@ export const Posts: FC = () => {
     <div className={styles.postsBlock}>
       <TitleComponent title="Posts" />
       <div className={styles.addPostButton}>
-        <Button
-          title="Add post"
-          onclick={() => setCreatePostModal(true)}
-          styleButton={style.button}
-        />
+        <Button onclick={() => setCreatePostModal(true)} styleButton={style.button}>
+          Add post
+        </Button>
       </div>
       <div className={styles.selectBlock} />
       {posts.status === 'loading' ? (
@@ -69,11 +67,9 @@ export const Posts: FC = () => {
         </ul>
       )}
       <div className={style.buttonBlock}>
-        <Button
-          title="Show more"
-          onclick={() => {}}
-          styleButton={styles.buttonShowMore}
-        />
+        <Button onclick={() => {}} styleButton={styles.buttonShowMore}>
+          Show more
+        </Button>
       </div>
       <CreatePostModal
         createItem={addPost}
