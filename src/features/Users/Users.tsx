@@ -1,5 +1,6 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
+import { AddUserModal } from '../../common/Components/Modals/AddUserModal/AddUserModal';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
@@ -10,6 +11,8 @@ import styles from './users.module.css';
 import { UsersTable } from './UsersTable/UsersTable';
 
 export const Users: FC = () => {
+  const [openAddUserModal, setOpenDeleteUserModal] = useState(false);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -20,11 +23,16 @@ export const Users: FC = () => {
     <div className={styles.usersContainer}>
       <TitleComponent title="Users" />
       <div className={styles.addUser}>
-        <Button styleButton={style.button} onclick={() => {}}>
+        <Button styleButton={style.button} onclick={() => setOpenDeleteUserModal(true)}>
           Add user
         </Button>
       </div>
       <UsersTable />
+      <AddUserModal
+        isOpen={openAddUserModal}
+        onClose={() => setOpenDeleteUserModal(false)}
+        title="Add user"
+      />
     </div>
   );
 };

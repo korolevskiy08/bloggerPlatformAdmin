@@ -1,0 +1,23 @@
+.content {
+    width: 419px;
+    height: 372px;
+    border-radius: 2px;
+    background-color: white;
+    padding: 20px;
+    margin: 0;
+}
+
+.text {
+    color: #737067;
+}
+
+.container input {
+    border: none;
+    border-bottom: 1px solid #DEDBDC;
+    width: 100%;
+}
+
+.addUser {
+    padding-top: 24px;
+    text-align: right;
+}
