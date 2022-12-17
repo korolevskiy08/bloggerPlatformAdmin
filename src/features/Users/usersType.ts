@@ -13,4 +13,10 @@ export type RequestUsersType = {
   totalCount: number;
 };
 
+export type AddUserType = {
+  login: string;
+  password: string;
+  email: string;
+};
+
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';

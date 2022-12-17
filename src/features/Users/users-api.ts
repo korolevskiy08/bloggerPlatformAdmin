@@ -1,6 +1,6 @@
 import { instance } from '../../common/api-instance/instance';
 
-import { RequestUsersType } from './usersType';
+import { AddUserType, RequestUsersType, UserType } from './usersType';
 
 export const usersAPI = {
   getUsers() {
@@ -8,5 +8,8 @@ export const usersAPI = {
   },
   removeUser(id: string) {
     return instance.delete(`users/${id}`);
+  },
+  addUser(data: AddUserType) {
+    return instance.post<UserType>('users', data);
   },
 };

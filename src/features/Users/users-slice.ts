@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { deleteUser, getUsers } from './users-actions';
+import { addNewUser, deleteUser, getUsers } from './users-actions';
 import { Status, UserType } from './usersType';
 
 const slice = createSlice({
@@ -24,6 +24,15 @@ const slice = createSlice({
         error: null,
 
         users: state.users.filter(el => el.id !== action.payload!.id),
+      };
+    });
+    builder.addCase(addNewUser.fulfilled, (state, action) => {
+      return {
+        ...state,
+        status: 'succeeded',
+        error: null,
+
+        users: [action.payload!.data, ...state.users],
       };
     });
     builder.addMatcher(
