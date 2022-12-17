@@ -6,4 +6,7 @@ export const usersAPI = {
   getUsers() {
     return instance.get<RequestUsersType>('users');
   },
+  removeUser(id: string) {
+    return instance.delete(`users/${id}`);
+  },
 };

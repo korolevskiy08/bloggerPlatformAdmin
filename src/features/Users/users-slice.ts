@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getUsers } from './users-actions';
+import { deleteUser, getUsers } from './users-actions';
 import { Status, UserType } from './usersType';
 
 const slice = createSlice({
@@ -17,6 +17,36 @@ const slice = createSlice({
       state.error = null;
       state.users = action.payload!.data.items;
     });
+    builder.addCase(deleteUser.fulfilled, (state, action) => {
+      return {
+        ...state,
+        status: 'succeeded',
+        error: null,
+
+        users: state.users.filter(el => el.id !== action.payload!.id),
+      };
+    });
+    builder.addMatcher(
+      action => action.type.endsWith('pending'),
+      state => {
+        state.status = 'loading';
+        state.error = null;
+      },
+    );
+    builder.addMatcher(
+      action => action.type.endsWith('fulfilled'),
+      state => {
+        state.status = 'succeeded';
+        state.error = null;
+      },
+    );
+    builder.addMatcher(
+      action => action.type.endsWith('rejected'),
+      (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      },
+    );
   },
 });
 

@@ -15,3 +15,15 @@ export const getUsers = createAsyncThunk(
     }
   },
 );
+
+export const deleteUser = createAsyncThunk(
+  'users/deleteUser',
+  async (id: string, { rejectWithValue }) => {
+    await usersAPI.removeUser(id);
+    try {
+      return { id };
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
