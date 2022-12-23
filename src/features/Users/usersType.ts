@@ -20,3 +20,5 @@ export type AddUserType = {
 };
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';
+export type SortByType = 'name' | 'createdAt';
+export type SortDirectionType = 'asc' | 'desc';

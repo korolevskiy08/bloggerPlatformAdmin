@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Pagination } from '@mui/material';
 
 import { AddUserModal } from '../../common/Components/Modals/AddUserModal/AddUserModal';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
@@ -10,6 +10,7 @@ import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
 import { getUsers } from './users-actions';
+import { setFilterUsers } from './users-slice';
 import styles from './users.module.css';
 import { UsersTable } from './UsersTable/UsersTable';
 
@@ -18,9 +19,22 @@ export const Users: FC = () => {
   const status = useAppSelector(state => state.posts.status);
   const dispatch = useAppDispatch();
 
+  const page = useAppSelector(state => state.users.page);
+  const usersTotalCount = useAppSelector(state => state.users.totalCount);
+  const usersPageCount = useAppSelector(state => state.users.pageCount);
+  const paginationPageCount = Math.ceil(usersTotalCount / usersPageCount);
+
   useEffect(() => {
     dispatch(getUsers());
   }, []);
+
+  const paginationChangeHandler = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ): void => {
+    dispatch(setFilterUsers({ pageNumber: value }));
+    dispatch(getUsers());
+  };
 
   return (
     <div className={styles.usersContainer}>
@@ -41,6 +55,13 @@ export const Users: FC = () => {
             </Button>
           </div>
           <UsersTable />
+          <Pagination
+            className={styles.pagination}
+            onChange={paginationChangeHandler}
+            page={page}
+            count={paginationPageCount}
+            shape="rounded"
+          />
           <AddUserModal
             isOpen={openAddUserModal}
             onClose={() => setOpenDeleteUserModal(false)}
