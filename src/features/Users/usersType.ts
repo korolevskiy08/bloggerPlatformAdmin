@@ -13,6 +13,13 @@ export type RequestUsersType = {
   totalCount: number;
 };
 
+export type UserParamType = {
+  page?: number;
+  pageSize?: number;
+  pagesCount?: number;
+  totalCount?: number;
+}
+
 export type AddUserType = {
   login: string;
   password: string;

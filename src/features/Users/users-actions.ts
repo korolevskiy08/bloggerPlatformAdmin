@@ -1,14 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import { AppRootStateType } from '../../app/store';
+
 import { usersAPI } from './users-api';
 import { AddUserType } from './usersType';
 
 export const getUsers = createAsyncThunk(
   'users/getUsers',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
+    const params = getState() as AppRootStateType;
+
     try {
-      const res = await usersAPI.getUsers();
+      const res = await usersAPI.getUsers(params.users.params);
 
       return res;
     } catch (e) {
