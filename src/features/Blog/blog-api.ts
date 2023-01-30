@@ -6,7 +6,7 @@ export const blogAPI = {
     return instance.get(`blogs/${id}`);
   },
   editBlog({ data, id }: EditBlogType) {
-    return instance.put<NewBlogType>(`blogs/${id}`, data);
+    return instance.put<NewBlogType>(`blogger/blogs/${id}`, data);
   },
 };
 

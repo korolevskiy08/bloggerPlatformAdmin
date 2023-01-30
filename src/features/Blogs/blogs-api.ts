@@ -2,7 +2,7 @@ import { instance } from '../../common/api-instance/instance';
 
 export const blogsAPI = {
   getBlogs() {
-    return instance.get('blogs');
+    return instance.get('sa/blogs');
   },
   removeBlog(id: string) {
     return instance.delete(`blogs/${id}`);
