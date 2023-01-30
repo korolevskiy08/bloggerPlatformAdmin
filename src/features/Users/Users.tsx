@@ -24,7 +24,6 @@ export const Users: FC = () => {
   const usersPageSize = useAppSelector(state => state.users.pageSize);
   const paginationPageCount = Math.ceil(usersTotalCount / usersPageSize);
 
-  console.log(paginationPageCount);
   useEffect(() => {
     dispatch(getUsers());
   }, []);
